@@ -107,7 +107,7 @@ def correr_experimentos():
         f.write("\n".join(output))
 
     print("resultados fueron generados correctamente")
+print("resultados fueron generados correctamente")
 
 if __name__ == "__main__":
     correr_experimentos()
-
