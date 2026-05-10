@@ -55,28 +55,32 @@ EXPERIMENTOS = [
 
 
 def correr_experimentos():
-    print("=" * 65)
-    print("  EXPERIMENTOS DEL AGENTE DE RECOMENDACIÓN DE EJERCICIO")
-    print("=" * 65)
+    output = []
+
+    output.append("=" * 65)
+    output.append("EXPERIMENTOS DEL AGENTE DE RECOMENDACIÓN DE EJERCICIO")
+    output.append("=" * 65)
 
     resumen = []
 
     for exp in EXPERIMENTOS:
-        print(f"\n{'─'*65}")
-        print(f"Experimento {exp['id']}: {exp['descripcion']}")
-        print(f"{'─'*65}")
+        output.append("\n" + "─" * 65)
+        output.append(f"Experimento {exp['id']}: {exp['descripcion']}")
+        output.append("─" * 65)
 
         resultado = agente.ejecutar(exp["entrada"])
         d = resultado["decision"]
 
-        print(f"  Entrada : energía={exp['entrada']['energia']}, "
-              f"tiempo={exp['entrada']['tiempo']}min, "
-              f"objetivo={exp['entrada']['objetivo']}, "
-              f"restricción={exp['entrada']['restricciones']}")
-        print(f"  Acción  : {d['accion']}")
-        print(f"  Ejercicio: {d['ejercicio']} ({d['intensidad']}, {d['duracion']} min)")
-        print(f"  Score   : {d['score']}")
-        print(f"  Top 3   : {[(n, s) for s, n in d['top_candidatos']]}")
+        output.append(
+            f"Entrada: energía={exp['entrada']['energia']}, "
+            f"tiempo={exp['entrada']['tiempo']}min, "
+            f"objetivo={exp['entrada']['objetivo']}, "
+            f"restricción={exp['entrada']['restricciones']}"
+        )
+        output.append(f"Acción: {d['accion']}")
+        output.append(f"Ejercicio: {d['ejercicio']} ({d['intensidad']}, {d['duracion']} min)")
+        output.append(f"Score: {d['score']}")
+        output.append(f"Top 3: {[(n, s) for s, n in d['top_candidatos']]}")
 
         resumen.append({
             "exp": exp["id"],
@@ -85,18 +89,21 @@ def correr_experimentos():
             "accion": d["accion"]
         })
 
-    # Métricas agregadas del experimento
-    print(f"\n{'='*65}")
-    print("  RESUMEN DE MÉTRICAS")
-    print(f"{'='*65}")
+    # métricas
+    output.append("\n" + "=" * 65)
+    output.append("RESUMEN DE MÉTRICAS")
+    output.append("=" * 65)
+
     scores = [r["score"] for r in resumen]
-    print(f"  Score promedio       : {sum(scores)/len(scores):.4f}")
-    print(f"  Score máximo         : {max(scores):.4f}")
-    print(f"  Score mínimo         : {min(scores):.4f}")
-    print(f"  Decisiones tomadas   : {len(resumen)}")
-    print(f"  Ejercicios únicos    : {len(set(r['ejercicio'] for r in resumen))}")
-    print()
 
+    output.append(f"Score promedio: {sum(scores)/len(scores):.4f}")
+    output.append(f"Score máximo: {max(scores):.4f}")
+    output.append(f"Score mínimo: {min(scores):.4f}")
+    output.append(f"Decisiones tomadas: {len(resumen)}")
+    output.append(f"Ejercicios únicos: {len(set(r['ejercicio'] for r in resumen))}")
 
-if __name__ == "__main__":
-    correr_experimentos()
+    # guardar archivo bien
+    with open("results/resultados.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(output))
+
+    print("resultados fueron generados correctamente")
