@@ -1,0 +1,57 @@
+=================================================================
+EXPERIMENTOS DEL AGENTE DE RECOMENDACIÓN DE EJERCICIO
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+Experimento 1: Usuario con energía media, objetivo cardio (mini experimento del doc)
+─────────────────────────────────────────────────────────────────
+Entrada: energía=media, tiempo=30min, objetivo=cardio, restricción=ninguna
+Acción: a2 - recomendar rutina completa
+Ejercicio: bicicleta (media, 30 min)
+Score: 0.85
+Top 3: [('bicicleta', 0.85), ('caminar', 0.85), ('correr', 0.685)]
+
+─────────────────────────────────────────────────────────────────
+Experimento 2: Usuario con lesión, necesita movilidad
+─────────────────────────────────────────────────────────────────
+Entrada: energía=baja, tiempo=20min, objetivo=movilidad, restricción=lesion
+Acción: a2 - recomendar rutina completa
+Ejercicio: yoga (baja, 20 min)
+Score: 0.8825
+Top 3: [('yoga', 0.8825), ('estiramientos', 0.725), ('movilidad articular', 0.725)]
+
+─────────────────────────────────────────────────────────────────
+Experimento 3: Usuario con alta energía, quiere fuerza
+─────────────────────────────────────────────────────────────────
+Entrada: energía=alta, tiempo=45min, objetivo=fuerza, restricción=ninguna
+Acción: a2 - recomendar rutina completa
+Ejercicio: sentadillas (alta, 20 min)
+Score: 0.875
+Top 3: [('sentadillas', 0.875), ('peso muerto', 0.875), ('flexiones', 0.725)]
+
+─────────────────────────────────────────────────────────────────
+Experimento 4: Usuario con fatiga, tiempo muy limitado
+─────────────────────────────────────────────────────────────────
+Entrada: energía=baja, tiempo=10min, objetivo=recuperacion, restricción=fatiga
+Acción: a2 - recomendar rutina completa
+Ejercicio: respiración (baja, 10 min)
+Score: 0.725
+Top 3: [('respiración', 0.725), ('plancha', 0.44)]
+
+─────────────────────────────────────────────────────────────────
+Experimento 5: Usuario sin historial previo, exploración inicial
+─────────────────────────────────────────────────────────────────
+Entrada: energía=media, tiempo=60min, objetivo=fuerza, restricción=ninguna
+Acción: a2 - recomendar rutina completa
+Ejercicio: flexiones (media, 15 min)
+Score: 0.725
+Top 3: [('flexiones', 0.725), ('plancha', 0.725), ('sentadillas', 0.685)]
+
+=================================================================
+RESUMEN DE MÉTRICAS
+=================================================================
+Score promedio: 0.8115
+Score máximo: 0.8825
+Score mínimo: 0.7250
+Decisiones tomadas: 5
+Ejercicios únicos: 5
