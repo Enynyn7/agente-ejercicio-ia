@@ -53,7 +53,6 @@ EXPERIMENTOS = [
     },
 ]
 
-
 def correr_experimentos():
     output = []
 
@@ -102,8 +101,10 @@ def correr_experimentos():
     output.append(f"Decisiones tomadas: {len(resumen)}")
     output.append(f"Ejercicios únicos: {len(set(r['ejercicio'] for r in resumen))}")
 
-    # guardar archivo bien
-    with open("results/resultados.txt", "w", encoding="utf-8") as f:
+    # GUARDAR ARCHIVO (DENTRO de la función)
+    ruta = os.path.join(os.path.dirname(__file__), "..", "results", "resultados.txt")
+
+    with open(ruta, "w", encoding="utf-8") as f:
         f.write("\n".join(output))
 
     print("resultados fueron generados correctamente")
